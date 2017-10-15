@@ -1,0 +1,14 @@
+{
+    "name": "penmedia/common",
+    "description": "Penmedia Common Panel",
+    "type": "module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Technostar Group",
+            "email": "info@technostargroup.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

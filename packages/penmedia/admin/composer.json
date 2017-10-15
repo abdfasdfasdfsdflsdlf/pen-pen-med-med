@@ -1,0 +1,14 @@
+{
+    "name": "penmedia/admin",
+    "description": "Penmedia Admin Panel",
+    "type": "module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Technostar Group",
+            "email": "info@technostargroup.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
