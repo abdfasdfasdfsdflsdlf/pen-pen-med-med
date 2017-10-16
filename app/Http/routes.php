@@ -14,3 +14,8 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::auth();
+
+Route::get('/', '\Penmedia\Common\Http\Controllers\HomeController@index');
+Route::get('/home', '\Penmedia\Common\Http\Controllers\HomeController@index');
