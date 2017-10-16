@@ -19,8 +19,17 @@ class PenmediaCommonServiceProvider extends ServiceProvider
         | Load the language translation
         |--------------------------------------------------------------------------
         */
-        $this->loadTranslationsFrom($this->app->basePath(). '/packages/penmedia/common/resources/lang', 'penmedia\common' );
+        $this->loadTranslationsFrom( __DIR__ . '/resources/lang', 'penmedia\common' );
 
+        /*
+        |--------------------------------------------------------------------------
+        | Load the Views
+        |--------------------------------------------------------------------------
+        */
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'common');
+        $this->publishes([
+            __DIR__ . '/resources/views' => base_path('resources/views')
+        ]);
 
         /*
         |--------------------------------------------------------------------------
@@ -31,6 +40,7 @@ class PenmediaCommonServiceProvider extends ServiceProvider
         {
             require $file;
         }
+
     }
 
     /**
@@ -40,6 +50,7 @@ class PenmediaCommonServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        require __DIR__.'/Http/routes.php';
         /*
         |--------------------------------------------------------------------------
         | Register the Admin Alias
@@ -55,7 +66,7 @@ class PenmediaCommonServiceProvider extends ServiceProvider
         | Register the Controllers
         |--------------------------------------------------------------------------
         */
-
+        
     }
 
 }

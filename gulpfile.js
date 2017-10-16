@@ -19,6 +19,7 @@ elixir(function(mix) {
 elixir(function(mix) {
     mix.less('admin-lte/AdminLTE.less', 'public/la-assets/css');
     mix.less('bootstrap/bootstrap.less', 'public/la-assets/css');
+    mix.less('../../../packages/penmedia/common/resources/assets/less/style.less', 'public/penmedia/css') 
 });
 
 /*

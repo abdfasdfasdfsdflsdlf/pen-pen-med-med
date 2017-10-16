@@ -10,7 +10,7 @@ use Penmedia\Common\Http\PenmediaHelper;
 class Common extends LAConfigs
 {
     /* Get site logo */
-    public static function getSiteLogo($key, $default = 'logo1.png') {
+    public static function getSiteLogo($key, $default = 'logo.png') {
     	$logo = self::getByKey( $key );
 		
 		if($logo) {

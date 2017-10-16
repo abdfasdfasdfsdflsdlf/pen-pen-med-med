@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group has-feedback">
-                    {!! Former::text('password')->label(false)->id('password')->addClass('form-control')->placeholder('Password') !!}
+                    {!! Former::text('password')->type('password')->label(false)->id('password')->addClass('form-control')->placeholder('Password') !!}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
