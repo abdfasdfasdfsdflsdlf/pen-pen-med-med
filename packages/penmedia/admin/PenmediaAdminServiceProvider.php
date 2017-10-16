@@ -2,11 +2,17 @@
 
 namespace Penmedia\Admin;
 
-use Illuminate\Support\ServiceProvider;
+use Artisan;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\ServiceProvider;
 
-class PenmediaAdminServiceProvider extends ServiceProvider
+
+class MypackageAdminServiceProvider extends ServiceProvider
 {
+    protected $middleware = [
+        'auth' => 'App\Http\Middleware\Authenticate'
+    ];
     /**
      * Bootstrap the application services.
      *
@@ -14,7 +20,11 @@ class PenmediaAdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'admin');
+
+        $this->publishes([
+            __DIR__ . '/resources/views' => base_path('packages/admin/resources/views')
+        ]);
     }
 
     /**
@@ -24,26 +34,18 @@ class PenmediaAdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        /*
-        |--------------------------------------------------------------------------
-        | Register the Admin Alias
-        |--------------------------------------------------------------------------
-        */
-        
-
-        /*
-        include __DIR__.'/routes.php';
+        include __DIR__.'/Http/routes.php';
 
         // For LAEditor
         if(file_exists(__DIR__.'/../../laeditor')) {
             include __DIR__.'/../../laeditor/src/routes.php';
         }
         
-        
+        /*
         |--------------------------------------------------------------------------
         | Providers
         |--------------------------------------------------------------------------
-        
+        */
         
         // Collective HTML & Form Helper
         $this->app->register(\Collective\Html\HtmlServiceProvider::class);
@@ -56,11 +58,11 @@ class PenmediaAdminServiceProvider extends ServiceProvider
         // For Spatie Backup
         $this->app->register(\Spatie\Backup\BackupServiceProvider::class);
         
-        
+        /*
         |--------------------------------------------------------------------------
         | Register the Alias
         |--------------------------------------------------------------------------
-        
+        */
         
         $loader = AliasLoader::getInstance();
         
@@ -92,12 +94,12 @@ class PenmediaAdminServiceProvider extends ServiceProvider
         $loader->alias('permission', \Zizaco\Entrust\Middleware\EntrustPermission::class);
         $loader->alias('ability', \Zizaco\Entrust\Middleware\EntrustAbility::class);
         
-        
+        /*
         |--------------------------------------------------------------------------
         | Register the Controllers
         |--------------------------------------------------------------------------
-        
-        
+        */
+        $this->app->make('App\Http\Controllers\Auth\AuthController');
         $this->app->make('Dwij\Laraadmin\Controllers\ModuleController');
         $this->app->make('Dwij\Laraadmin\Controllers\FieldController');
         $this->app->make('Dwij\Laraadmin\Controllers\MenuController');
@@ -106,6 +108,6 @@ class PenmediaAdminServiceProvider extends ServiceProvider
         if(file_exists(__DIR__.'/../../laeditor')) {
             $this->app->make('Dwij\Laeditor\Controllers\CodeEditorController');
         }
-        */
+
     }
 }
