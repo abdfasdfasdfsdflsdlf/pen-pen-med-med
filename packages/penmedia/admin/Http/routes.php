@@ -1,8 +1,8 @@
 <?php
 
 /* ================== Access Uploaded Files ================== */
-$route_namespace = 'Penmedia\Admin\Http\Controllers';
-Route::get('files/{hash}/{name}', $route_namespace . '\UploadsController@get_file');
+$route_namespace = config('laraadmin.adminnamespace');
+Route::get('files/{hash}/{name}', $route_namespace . 'UploadsController@get_file');
 
 /*
 |--------------------------------------------------------------------------
@@ -18,52 +18,98 @@ if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 	Route::get('/logout', 'Auth\LoginController@logout');
 }
 
-Route::group(['as' => $as, 'middleware' => ['web', 'permission:ADMIN_PANEL']], function () {
-	
+Route::group([
+    'namespace'  => $route_namespace,
+	'as' => $as,
+    'middleware' => ['web', 'permission:ADMIN_PANEL', 'role:SUPER_ADMIN']
+], function () {
+
 	/* ================== Dashboard ================== */
-	$route_namespace = 'Penmedia\Admin\Http\Controllers';
-	Route::get(config('laraadmin.adminRoute'), $route_namespace . '\DashboardController@index');
-	Route::get(config('laraadmin.adminRoute'). '/dashboard', $route_namespace . '\DashboardController@index');
+	Route::get(config('laraadmin.adminRoute'), 'DashboardController@index');
+	Route::get(config('laraadmin.adminRoute'). '/dashboard', 'DashboardController@index');
 	
 	/* ================== Users ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/users', $route_namespace . '\UsersController');
-	Route::get(config('laraadmin.adminRoute') . '/user_dt_ajax', $route_namespace . '\UsersController@dtajax');
+	Route::resource(config('laraadmin.adminRoute') . '/users', 'UsersController');
+	Route::get(config('laraadmin.adminRoute') . '/user_dt_ajax', 'UsersController@dtajax');
 	
 	/* ================== Uploads ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/uploads', $route_namespace . '\UploadsController');
-	Route::post(config('laraadmin.adminRoute') . '/upload_files', $route_namespace . '\UploadsController@upload_files');
-	Route::get(config('laraadmin.adminRoute') . '/uploaded_files', $route_namespace . '\UploadsController@uploaded_files');
-	Route::post(config('laraadmin.adminRoute') . '/uploads_update_caption', $route_namespace . '\UploadsController@update_caption');
-	Route::post(config('laraadmin.adminRoute') . '/uploads_update_filename', $route_namespace . '\UploadsController@update_filename');
-	Route::post(config('laraadmin.adminRoute') . '/uploads_update_public', $route_namespace . '\UploadsController@update_public');
-	Route::post(config('laraadmin.adminRoute') . '/uploads_delete_file', $route_namespace . '\UploadsController@delete_file');
+	Route::resource(config('laraadmin.adminRoute') . '/uploads', 'UploadsController');
+	Route::post(config('laraadmin.adminRoute') . '/upload_files', 'UploadsController@upload_files');
+	Route::get(config('laraadmin.adminRoute') . '/uploaded_files', 'UploadsController@uploaded_files');
+	Route::post(config('laraadmin.adminRoute') . '/uploads_update_caption', 'UploadsController@update_caption');
+	Route::post(config('laraadmin.adminRoute') . '/uploads_update_filename', 'UploadsController@update_filename');
+	Route::post(config('laraadmin.adminRoute') . '/uploads_update_public', 'UploadsController@update_public');
+	Route::post(config('laraadmin.adminRoute') . '/uploads_delete_file', 'UploadsController@delete_file');
 	
 	/* ================== Roles ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/roles', $route_namespace . '\RolesController');
-	Route::get(config('laraadmin.adminRoute') . '/role_dt_ajax', $route_namespace . '\RolesController@dtajax');
-	Route::post(config('laraadmin.adminRoute') . '/save_module_role_permissions/{id}', $route_namespace . '\RolesController@save_module_role_permissions');
+	Route::resource(config('laraadmin.adminRoute') . '/roles', 'RolesController');
+	Route::get(config('laraadmin.adminRoute') . '/role_dt_ajax', 'RolesController@dtajax');
+	Route::post(config('laraadmin.adminRoute') . '/save_module_role_permissions/{id}', 'RolesController@save_module_role_permissions');
 	
 	/* ================== Permissions ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/permissions', $route_namespace . '\PermissionsController');
-	Route::get(config('laraadmin.adminRoute') . '/permission_dt_ajax', $route_namespace . '\PermissionsController@dtajax');
-	Route::post(config('laraadmin.adminRoute') . '/save_permissions/{id}', $route_namespace . '\PermissionsController@save_permissions');
+	Route::resource(config('laraadmin.adminRoute') . '/permissions', 'PermissionsController');
+	Route::get(config('laraadmin.adminRoute') . '/permission_dt_ajax', 'PermissionsController@dtajax');
+	Route::post(config('laraadmin.adminRoute') . '/save_permissions/{id}', 'PermissionsController@save_permissions');
 	
 	/* ================== Departments ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/departments', $route_namespace . '\DepartmentsController');
-	Route::get(config('laraadmin.adminRoute') . '/department_dt_ajax', $route_namespace . '\DepartmentsController@dtajax');
+	Route::resource(config('laraadmin.adminRoute') . '/departments', 'DepartmentsController');
+	Route::get(config('laraadmin.adminRoute') . '/department_dt_ajax', 'DepartmentsController@dtajax');
 	
 	/* ================== Employees ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/employees', $route_namespace . '\EmployeesController');
-	Route::get(config('laraadmin.adminRoute') . '/employee_dt_ajax', $route_namespace . '\EmployeesController@dtajax');
-	Route::post(config('laraadmin.adminRoute') . '/change_password/{id}', $route_namespace . '\EmployeesController@change_password');
+	Route::resource(config('laraadmin.adminRoute') . '/employees', 'EmployeesController');
+	Route::get(config('laraadmin.adminRoute') . '/employee_dt_ajax', 'EmployeesController@dtajax');
+	Route::post(config('laraadmin.adminRoute') . '/change_password/{id}', 'EmployeesController@change_password');
 	
 	/* ================== Organizations ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/organizations', $route_namespace . '\OrganizationsController');
-	Route::get(config('laraadmin.adminRoute') . '/organization_dt_ajax', $route_namespace . '\OrganizationsController@dtajax');
+	Route::resource(config('laraadmin.adminRoute') . '/organizations', 'OrganizationsController');
+	Route::get(config('laraadmin.adminRoute') . '/organization_dt_ajax', 'OrganizationsController@dtajax');
 
 	/* ================== Backups ================== */
-	Route::resource(config('laraadmin.adminRoute') . '/backups', $route_namespace . '\BackupsController');
-	Route::get(config('laraadmin.adminRoute') . '/backup_dt_ajax', $route_namespace . '\BackupsController@dtajax');
-	Route::post(config('laraadmin.adminRoute') . '/create_backup_ajax', $route_namespace . '\BackupsController@create_backup_ajax');
-	Route::get(config('laraadmin.adminRoute') . '/downloadBackup/{id}', $route_namespace . '\BackupsController@downloadBackup');
+	Route::resource(config('laraadmin.adminRoute') . '/backups', 'BackupsController');
+	Route::get(config('laraadmin.adminRoute') . '/backup_dt_ajax', 'BackupsController@dtajax');
+	Route::post(config('laraadmin.adminRoute') . '/create_backup_ajax', 'BackupsController@create_backup_ajax');
+	Route::get(config('laraadmin.adminRoute') . '/downloadBackup/{id}', 'BackupsController@downloadBackup');
+
+   
+	/* ================== Modules ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/modules', 'ModuleController');
+	Route::resource(config('laraadmin.adminRoute') . '/module_fields', 'FieldController');
+	Route::get(config('laraadmin.adminRoute') . '/module_generate_crud/{model_id}', 'ModuleController@generate_crud');
+	Route::get(config('laraadmin.adminRoute') . '/module_generate_migr/{model_id}', 'ModuleController@generate_migr');
+	Route::get(config('laraadmin.adminRoute') . '/module_generate_update/{model_id}', 'ModuleController@generate_update');
+	Route::get(config('laraadmin.adminRoute') . '/module_generate_migr_crud/{model_id}', 'ModuleController@generate_migr_crud');
+	Route::get(config('laraadmin.adminRoute') . '/modules/{model_id}/set_view_col/{column_name}', 'ModuleController@set_view_col');
+	Route::post(config('laraadmin.adminRoute') . '/save_role_module_permissions/{id}', 'ModuleController@save_role_module_permissions');
+	Route::get(config('laraadmin.adminRoute') . '/save_module_field_sort/{model_id}', 'ModuleController@save_module_field_sort');
+	Route::post(config('laraadmin.adminRoute') . '/check_unique_val/{field_id}', 'FieldController@check_unique_val');
+	Route::get(config('laraadmin.adminRoute') . '/module_fields/{id}/delete', 'FieldController@destroy');
+	Route::post(config('laraadmin.adminRoute') . '/get_module_files/{module_id}', 'ModuleController@get_module_files');
+	
+	/* ================== Code Editor ================== */
+	Route::get(config('laraadmin.adminRoute') . '/lacodeeditor', function () {
+		if(file_exists(resource_path("views/la/editor/index.blade.php"))) {
+			return redirect(config('laraadmin.adminRoute') . '/laeditor');
+		} else {
+			// show install code editor page
+			return View('admin::editor.install');
+		}
+	});
+
+	/* ================== Menu Editor ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/la_menus', 'MenuController');
+	Route::post(config('laraadmin.adminRoute') . '/la_menus/update_hierarchy', 'MenuController@update_hierarchy');
+	
+	/* ================== Configuration ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/la_configs', 'LAConfigController');
+	
+    Route::group([
+        'middleware' => 'role'
+    ], function () {
+		/*
+		Route::get(config('laraadmin.adminRoute') . '/menu', [
+            'as'   => 'menu',
+            'uses' => 'LAController@index'
+        ]);
+		*/
+    });
 });
