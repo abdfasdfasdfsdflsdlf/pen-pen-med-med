@@ -1,0 +1,12 @@
+{
+    "name": "mypackage/admin",
+    "description": "Admin Package",
+    "authors": [
+        {
+            "name": "admin",
+            "email": "admin@admin.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
