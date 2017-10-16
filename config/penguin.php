@@ -14,6 +14,8 @@ return [
     
 	'adminRoute' => 'admin',
     'adminnamespace' => 'Penmedia\Admin\Http\Controllers',
+
+    'homenamespace' => 'Penmedia\Common\Http\Controllers',
     
     /*
     |--------------------------------------------------------------------------

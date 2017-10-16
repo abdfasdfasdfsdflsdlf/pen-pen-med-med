@@ -4,7 +4,7 @@ namespace Penmedia\Admin\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Dwij\Laraadmin\Models\LAConfigs;
+use Penmedia\Admin\Http\Models\LAConfigs;
 
 class LAConfigController extends Controller
 {

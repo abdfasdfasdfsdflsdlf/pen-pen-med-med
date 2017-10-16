@@ -11,6 +11,12 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+$route_namespace = config('penguin.homenamespace');
+
+Route::group([
+    'namespace'  => $route_namespace,
+    'as'		 => "",
+], function () {
+	Route::get('/', 'HomeController@index');
+	Route::get('/home', 'HomeController@index');
+});

@@ -8,7 +8,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 
-class MypackageAdminServiceProvider extends ServiceProvider
+class PenmediaAdminServiceProvider extends ServiceProvider
 {
     protected $middleware = [
         'auth' => 'App\Http\Middleware\Authenticate'

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Response as FacadeResponse;
 use Illuminate\Support\Facades\Input;
 use Collective\Html\FormFacade as Form;
 
-use Dwij\Laraadmin\Models\Module;
+use Penmedia\Admin\Http\Models\Module;
 use Dwij\Laraadmin\Helpers\LAHelper;
 use Zizaco\Entrust\EntrustFacade as Entrust;
 

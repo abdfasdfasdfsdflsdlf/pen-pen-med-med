@@ -1,11 +1,8 @@
 <?php
-/**
- * Controller genrated using LaraAdmin
- * Help: http://laraadmin.com
- */
 
-namespace App\Http\Controllers;
+namespace Penmedia\Common\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -35,7 +32,7 @@ class HomeController extends Controller
         $roleCount = \App\Role::count();
 		if($roleCount != 0) {
 			if($roleCount != 0) {
-				return view('home');
+				return view('common::pages.home');
 			}
 		} else {
 			return view('errors.error', [

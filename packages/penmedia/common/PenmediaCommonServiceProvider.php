@@ -66,7 +66,7 @@ class PenmediaCommonServiceProvider extends ServiceProvider
         | Register the Controllers
         |--------------------------------------------------------------------------
         */
-        
+        $this->app->make('Penmedia\Common\Http\Controllers\HomeController');
     }
 
 }
