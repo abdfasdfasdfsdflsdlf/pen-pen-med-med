@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-@include('la.layouts.partials.htmlheader')
+@include('penmedia.layouts.partials.htmlheader')
 
 @yield('content')
 

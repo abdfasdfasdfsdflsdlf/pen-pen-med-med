@@ -1,4 +1,4 @@
-@extends('la.layouts.auth')
+@extends('penmedia.layouts.auth')
 
 @section('htmlheader_title')
     @lang('penmedia\common::common.label.password-recovery')
@@ -53,7 +53,7 @@
 
     </div><!-- /.login-box -->
 
-    @include('la.layouts.partials.scripts_auth')
+    @include('penmedia.layouts.partials.scripts_auth')
 
     <script>
         $(function () {
