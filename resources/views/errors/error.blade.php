@@ -4,7 +4,7 @@
         <title>{{ $title }}</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:200,400" rel="stylesheet" type="text/css">
-		<link href="{{ asset('la-assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('penmedia/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
 
         <style>
             html, body {
@@ -56,13 +56,13 @@
 				<i class="fa fa-bug" style="font-size:120px;color:#FF5959;margin-bottom:30px;"></i>
                 <div class="title">{{ $title }}</div>
 				<p>{!! $message !!}</p>
-				@if(Auth::guest())
-					<a href="{{ url('/') }}">Homepage</a> | 
-					<a href="javascript:history.back()">Go Back</a>
-				@else
-					<a href="{{ url(config('laraadmin.adminRoute')) }}">Dashboard.</a> | 
-					<a href="javascript:history.back()">Go Back</a>
-				@endif
+                @if(Auth::guest())
+                    <a href="{{ url('/') }}">@lang('errors.homepage')</a> | 
+                    <a href="javascript:history.back()">@lang('errors.go-back')</a>
+                @else
+                    <a href="{{ url(config('laraadmin.adminRoute')) }}">@lang('errors.dashboard').</a> | 
+                    <a href="javascript:history.back()">@lang('errors.go-back')</a>
+                @endif
             </div>
         </div>
     </body>

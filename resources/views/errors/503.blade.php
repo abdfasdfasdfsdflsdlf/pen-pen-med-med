@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Be right back.</title>
+        <title>@lang('errors.be-right-back')</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:200,400" rel="stylesheet" type="text/css">
-		<link href="{{ asset('la-assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('penmedia/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
 
         <style>
             html, body {
@@ -48,14 +48,14 @@
         <div class="container">
             <div class="content">
 				<i class="fa fa-wrench" style="font-size:120px;color:#666;margin-bottom:30px;"></i>
-                <div class="title">Be right back</div>
+                <div class="title">@lang('errors.be-right-back')</div>
 				@if(Auth::guest())
-					<a href="{{ url('/') }}">Homepage</a> | 
-					<a href="javascript:history.back()">Go Back</a>
-				@else
-					<a href="{{ url(config('laraadmin.adminRoute')) }}">Dashboard.</a> | 
-					<a href="javascript:history.back()">Go Back</a>
-				@endif
+                    <a href="{{ url('/') }}">@lang('errors.homepage')</a> | 
+                    <a href="javascript:history.back()">@lang('errors.go-back')</a>
+                @else
+                    <a href="{{ url(config('laraadmin.adminRoute')) }}">@lang('errors.dashboard').</a> | 
+                    <a href="javascript:history.back()">@lang('errors.go-back')</a>
+                @endif
             </div>
         </div>
     </body>

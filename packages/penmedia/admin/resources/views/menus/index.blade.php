@@ -113,8 +113,8 @@ use Dwij\Laraadmin\Models\Module;
 @endsection
 
 @push('scripts')
-<script src="{{ asset('la-assets/plugins/nestable/jquery.nestable.js') }}"></script>
-<script src="{{ asset('la-assets/plugins/iconpicker/fontawesome-iconpicker.js') }}"></script>
+<script src="{{ asset('penmedia/plugins/nestable/jquery.nestable.js') }}"></script>
+<script src="{{ asset('penmedia/plugins/iconpicker/fontawesome-iconpicker.js') }}"></script>
 <script>
 $(function () {
 	$('input[name=icon]').iconpicker();

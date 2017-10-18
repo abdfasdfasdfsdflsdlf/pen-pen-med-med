@@ -17,17 +17,17 @@
     <title>{{ Common::getByKey('sitename') }}</title>
     
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('/la-assets/css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('la-assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/penmedia/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('penmedia/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     
     <!-- Custom styles for this template -->
-    <link href="{{ asset('/la-assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('/penmedia/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('/penmedia/css/style.css') }}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 
-    <script src="{{ asset('/la-assets/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <script src="{{ asset('/la-assets/js/smoothscroll.js') }}"></script>
+    <script src="{{ asset('/penmedia/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('/penmedia/js/smoothscroll.js') }}"></script>
 
 
 </head>
